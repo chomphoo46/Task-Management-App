@@ -3,6 +3,7 @@
 โปรเจกต์นี้เป็นส่วนของ **Backend** สำหรับระบบบริหารจัดการงาน (Task Management)  
 พัฒนาด้วย **NestJS**, ใช้ฐานข้อมูล **PostgreSQL**, และรองรับการทำงานผ่าน **Docker**
 
+---
 
 ## 🛠 เทคโนโลยีที่ใช้
 
@@ -12,32 +13,13 @@
 - **Docker & Docker Compose** (สำหรับการรันระบบแบบ container)
 - **Jest** (สำหรับการเขียน Unit Test)
 
+---
 
 ## 🚀 การเริ่มต้นใช้งาน
 
 1. **Clone โปรเจกต์**
 
 ```bash
-cd taskmanagement-app/backend
-npm install
-```
-### 🐘 2. Run PostgreSQL with Docker
-```
-docker compose up -d
-```
-### 🔒 3. สร้าง .env ไฟล์
-```
-DATABASE_HOST=db
-DATABASE_PORT=5432
-DATABASE_USER=postgres
-DATABASE_PASSWORD=postgres
-DATABASE_NAME=task_management
-
-```
-### 🧑‍💻 4. Run Backend Server
-```
-npm run start:dev
-```
 git clone https://github.com/Chomphoo46/taskmanagement-app.git
 cd taskmanagement-app/backend
 ```
@@ -88,4 +70,3 @@ cd taskmanagement-app/backend
     </td>
   </tr>
 </table>
->>>>>>> 86981b5 (update backend README)
