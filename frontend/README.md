@@ -35,7 +35,3 @@ npm install
 ```
 npm run dev
 ```
-  - ระบบจะรันอยู่ที่:
-    ```
-    http://localhost:5173
-    ```
