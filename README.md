@@ -1,55 +1,33 @@
-# React + TypeScript + Vite
+# 📋 ระบบจัดการงาน (Task Management App)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+โปรเจกต์นี้เป็นระบบบริหารจัดการงาน (Task Management) แบ่งออกเป็น 2 ส่วน คือ
 
-Currently, two official plugins are available:
+- 🖥 **Frontend:** พัฒนาโดยใช้ React, TypeScript, TailwindCSS, Vite
+- 🛠 **Backend:** พัฒนาโดยใช้ NestJS, TypeScript, Docker, PostgreSQL
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🔥 ฟีเจอร์เด่น
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- ผู้ใช้สามารถสมัครสมาชิก และเข้าสู่ระบบ
+- เพิ่ม / แก้ไข / ลบ งานได้
+- เปลี่ยนสถานะของงานได้ (Pending, In Progress, Completed)
+- แจ้งเตือนเมื่อดำเนินการสำเร็จหรือล้มเหลว
+- ระบบ Backend รองรับ API มาตรฐาน RESTful
+- ใช้งานฐานข้อมูล PostgreSQL ผ่าน ORM Sequelize
+- Deploy ได้ง่ายผ่าน Docker Compose
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+---
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## ⚙️ เทคโนโลยีที่ใช้
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+| ส่วน         | เทคโนโลยี |
+| ------------ | --------- |
+| Frontend     | React 19, TypeScript, TailwindCSS, Vite, React Router, React Hot Toast |
+| Backend      | NestJS 10, TypeScript, PostgreSQL, Sequelize ORM, Docker, JWT Authentication |
+| อื่น ๆ        | Vite, Eslint, Prettier, Docker Compose |
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
-# Task-Management-App
+---
+
+## 
+
