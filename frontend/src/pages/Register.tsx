@@ -55,7 +55,7 @@ export default function Register() {
           Create an account
         </h1>
         <p className="text-center text-sm text-gray-600">
-          Join us to access awesome features!
+          Let's organize your work and make success simple!
         </p>
 
         {/* ช่องกรอก Name */}
