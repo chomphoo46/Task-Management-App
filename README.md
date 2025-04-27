@@ -38,7 +38,7 @@
    cd Task-Management-App
    ```
 
-2. Set Up the Backend: For detailed instructions on setting up the backend, refer to the [Backend README](./Backend/README.md#️-setup-and-installation).
+2. Set Up the Backend: For detailed instructions on setting up the backend, refer to the [Backend README](frontend/README.md).
 
 3. Set Up the Frontend: For detailed instructions on setting up the frontend, refer to the [Frontend README](./Frontend/README.md#-setup-and-installation).
 
