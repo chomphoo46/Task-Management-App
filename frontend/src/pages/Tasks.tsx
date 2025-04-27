@@ -1,9 +1,8 @@
-// src/pages/Tasks.tsx
 import { useEffect, useState } from "react";
 import API from "../services/api";
-import { useFormik } from "formik";
-import * as Yup from "yup";
-import { toast, Toaster } from "react-hot-toast";
+import { useFormik } from "formik"; // ใช้จัดการฟอร์ม
+import * as Yup from "yup"; // ใช้ validate ฟอร์ม
+import { toast, Toaster } from "react-hot-toast"; // ใช้สำหรับแสดงข้อความแจ้งเตือน
 import DashboardLayout from "../components/DashboardLayout";
 
 export type Task = {
@@ -19,75 +18,82 @@ export default function Tasks() {
   const [editingId, setEditingId] = useState<string | null>(null);
   const [editValues, setEditValues] = useState({ title: "", description: "" });
 
+  // ดึงข้อมูล tasks ทั้งหมดจาก backend
   const fetchTasks = async () => {
     try {
       const res = await API.get("/tasks");
       setTasks(res.data);
     } catch (err) {
-      console.error(err);
+      console.error(err); // ถ้ามี error ให้ log ออกมา
     } finally {
-      setLoading(false);
+      setLoading(false); // โหลดเสร็จแล้วไม่ว่าจะสำเร็จหรือ error
     }
   };
 
+  // ดึงข้อมูลครั้งแรกตอน component โหลด
   useEffect(() => {
     fetchTasks();
   }, []);
 
+  // ตั้งค่า Formik สำหรับสร้าง task ใหม่
   const formik = useFormik({
     initialValues: {
       title: "",
       description: "",
     },
     validationSchema: Yup.object({
-      title: Yup.string().required("Title is required"),
+      title: Yup.string().required("Title is required"), // กำหนดว่า title ต้องไม่ว่าง
     }),
     onSubmit: async (values, { resetForm }) => {
       try {
         const res = await API.post("/tasks", values);
-        setTasks((prev) => [...prev, res.data]);
-        resetForm();
+        setTasks((prev) => [...prev, res.data]); // เพิ่ม task ใหม่เข้าใน state
+        resetForm(); // เคลียร์ฟอร์มหลังจากเพิ่มเสร็จ
       } catch (err) {
         console.error(err);
       }
     },
   });
 
+  // ลบ task ตาม id
   const handleDelete = async (id: string) => {
     if (!id) {
       console.error("Invalid task id");
       return;
     }
-    if (!confirm("Are you sure you want to delete this task?")) return;
+    if (!confirm("Are you sure you want to delete this task?")) return; // ยืนยันก่อนลบ
     try {
       await API.delete(`/tasks/${id}`);
-      setTasks((prev) => prev.filter((task) => task.id !== id));
-      toast.success("Task deleted!");
+      setTasks((prev) => prev.filter((task) => task.id !== id)); // ลบ task ออกจาก state
+      toast.success("Task deleted!"); // แจ้งเตือนลบสำเร็จ
     } catch (err) {
       console.error("Failed to delete task:", err);
       toast.error("Failed to delete task!");
     }
   };
 
+  // เริ่มแก้ไข task
   const handleEdit = (task: Task) => {
     setEditingId(task.id);
     setEditValues({ title: task.title, description: task.description || "" });
   };
 
+  // บันทึกการแก้ไข task
   const handleSave = async (id: string) => {
     try {
       const res = await API.patch(`/tasks/${id}`, editValues);
       setTasks((prev) =>
         prev.map((task) => (task.id === id ? res.data : task))
-      );
-      setEditingId(null);
-      toast.success("Task updated!");
+      ); // แก้ไข task ใน state
+      setEditingId(null); // ยกเลิกโหมดแก้ไข
+      toast.success("Task updated!"); // แจ้งเตือนบันทึกสำเร็จ
     } catch (err) {
       console.error("Failed to edit task:", err);
       toast.error("Failed to update task!");
     }
   };
 
+  // เปลี่ยนสถานะของ task (pending, in_progress, completed)
   const handleStatusChange = async (
     id: string,
     newStatus: "pending" | "in_progress" | "completed"
@@ -106,6 +112,7 @@ export default function Tasks() {
     }
   };
 
+  // คืนสี text ตามสถานะของ task
   const getStatusColor = (status: "pending" | "in_progress" | "completed") => {
     switch (status) {
       case "pending":
@@ -120,18 +127,23 @@ export default function Tasks() {
   };
 
   return (
+    // ใช้ DashboardLayout ครอบทุกอย่าง
     <DashboardLayout>
-      <div className="max-w-3xl mx-auto py-10 px-6">
-        <h1 className="text-4xl font-bold text-center mb-10">Task Manager</h1>
+      <div className="max-w-4xl mx-auto py-12 px-6">
+        {/* หัวข้อใหญ่ */}
+        <h1 className="text-5xl font-bold text-center mb-12 text-gray-800">
+          Task Manager
+        </h1>
 
+        {/* ฟอร์มสร้าง task */}
         <form
           onSubmit={formik.handleSubmit}
-          className="bg-white shadow-md rounded-xl p-6 mb-10 space-y-4"
+          className="bg-white/80 backdrop-blur-lg shadow-xl rounded-2xl p-8 mb-12 space-y-6 border border-gray-200"
         >
           <input
             type="text"
-            placeholder="Title"
-            className="w-full border p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+            placeholder="Task Title"
+            className="w-full border border-gray-300 p-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
             {...formik.getFieldProps("title")}
           />
           {formik.touched.title && formik.errors.title && (
@@ -140,34 +152,36 @@ export default function Tasks() {
 
           <textarea
             placeholder="Description (optional)"
-            className="w-full border p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-            rows={3}
+            className="w-full border border-gray-300 p-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            rows={4}
             {...formik.getFieldProps("description")}
           />
 
           <button
             type="submit"
-            className="bg-blue-600 text-white w-full py-2 rounded-md hover:bg-blue-700 transition-all"
+            className="bg-indigo-600 text-white w-full py-3 rounded-lg font-semibold hover:bg-indigo-700 transition-all"
             disabled={formik.isSubmitting}
           >
-            {formik.isSubmitting ? "Creating..." : "+ Add Task"}
+            {formik.isSubmitting ? "Creating..." : "+ Add New Task"}
           </button>
         </form>
 
+        {/* ส่วนแสดงรายการ tasks */}
         {loading ? (
-          <p>Loading...</p>
+          <p className="text-center text-gray-500">Loading...</p>
         ) : tasks.length === 0 ? (
-          <p className="text-gray-500 text-center">No tasks found.</p>
+          <p className="text-gray-400 text-center">No tasks found.</p>
         ) : (
-          <ul className="space-y-6">
+          <ul className="space-y-8">
             {tasks.map((task) => (
               <li
                 key={task.id}
-                className="bg-white shadow-md rounded-xl p-6 hover:shadow-lg transition-all flex flex-col space-y-4"
+                className="bg-white/80 backdrop-blur-lg shadow-lg rounded-2xl p-6 hover:shadow-2xl transition-all border border-gray-200"
               >
-                <div>
+                <div className="mb-6">
                   {editingId === task.id ? (
-                    <div className="space-y-3">
+                    <div className="space-y-4">
+                      {/* ฟอร์มแก้ไข */}
                       <input
                         type="text"
                         value={editValues.title}
@@ -177,7 +191,7 @@ export default function Tasks() {
                             title: e.target.value,
                           })
                         }
-                        className="w-full border p-2 rounded-md"
+                        className="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                       />
                       <textarea
                         value={editValues.description}
@@ -187,19 +201,20 @@ export default function Tasks() {
                             description: e.target.value,
                           })
                         }
-                        className="w-full border p-2 rounded-md"
-                        rows={3}
+                        className="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                        rows={4}
                       />
-                      <div className="flex gap-3">
+                      {/* ปุ่ม save / cancel */}
+                      <div className="flex gap-4">
                         <button
                           onClick={() => handleSave(task.id)}
-                          className="bg-green-600 text-white px-4 py-1 rounded-md hover:bg-green-700"
+                          className="bg-green-500 text-white px-6 py-2 rounded-lg font-medium hover:bg-green-600"
                         >
                           Save
                         </button>
                         <button
                           onClick={() => setEditingId(null)}
-                          className="bg-gray-400 text-white px-4 py-1 rounded-md hover:bg-gray-500"
+                          className="bg-gray-400 text-white px-6 py-2 rounded-lg font-medium hover:bg-gray-500"
                         >
                           Cancel
                         </button>
@@ -207,9 +222,12 @@ export default function Tasks() {
                     </div>
                   ) : (
                     <>
-                      <h2 className="text-xl font-bold">{task.title}</h2>
+                      {/* แสดง task title / description */}
+                      <h2 className="text-2xl font-semibold text-gray-800">
+                        {task.title}
+                      </h2>
                       {task.description && (
-                        <p className="text-gray-600 text-sm">
+                        <p className="text-gray-600 mt-2 text-base">
                           {task.description}
                         </p>
                       )}
@@ -217,13 +235,16 @@ export default function Tasks() {
                   )}
                 </div>
 
+                {/* สถานะและปุ่มแก้ไข/ลบ */}
                 <div className="flex justify-between items-center">
-                  <p
-                    className={`text-sm font-semibold ${getStatusColor(
-                      task.status
-                    )}`}
-                  >
-                    Status:
+                  <div className="flex items-center space-x-2">
+                    <span
+                      className={`text-sm font-semibold ${getStatusColor(
+                        task.status
+                      )}`}
+                    >
+                      {task.status.replace("_", " ")}
+                    </span>
                     <select
                       value={task.status}
                       onChange={(e) =>
@@ -232,25 +253,26 @@ export default function Tasks() {
                           e.target.value as Task["status"]
                         )
                       }
-                      className="ml-2 border rounded-md text-xs p-1"
+                      className="border border-gray-300 rounded-lg text-sm p-2 focus:ring-indigo-500 focus:outline-none"
                     >
                       <option value="pending">Pending</option>
                       <option value="in_progress">In Progress</option>
                       <option value="completed">Completed</option>
                     </select>
-                  </p>
+                  </div>
 
+                  {/* ปุ่มแก้ไข / ลบ */}
                   {editingId !== task.id && (
-                    <div className="flex space-x-2">
+                    <div className="flex space-x-3">
                       <button
                         onClick={() => handleEdit(task)}
-                        className="bg-yellow-400 text-white px-3 py-1 rounded-md hover:bg-yellow-500 text-xs"
+                        className="bg-yellow-400 text-white px-4 py-2 rounded-lg text-sm hover:bg-yellow-500"
                       >
                         Edit
                       </button>
                       <button
                         onClick={() => handleDelete(task.id)}
-                        className="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-600 text-xs"
+                        className="bg-red-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-red-600"
                       >
                         Delete
                       </button>
@@ -261,6 +283,7 @@ export default function Tasks() {
             ))}
           </ul>
         )}
+        {/* กล่องแจ้งเตือนของ react-hot-toast */}
         <Toaster />
       </div>
     </DashboardLayout>

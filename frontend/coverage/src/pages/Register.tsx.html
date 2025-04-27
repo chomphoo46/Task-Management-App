@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>117/117</span>
+                <span class='fraction'>116/116</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>117/117</span>
+                <span class='fraction'>116/116</span>
             </div>
         
             
@@ -204,7 +204,10 @@
 <a name='L139'></a><a href='#L139'>139</a>
 <a name='L140'></a><a href='#L140'>140</a>
 <a name='L141'></a><a href='#L141'>141</a>
-<a name='L142'></a><a href='#L142'>142</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L142'></a><a href='#L142'>142</a>
+<a name='L143'></a><a href='#L143'>143</a>
+<a name='L144'></a><a href='#L144'>144</a>
+<a name='L145'></a><a href='#L145'>145</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -213,6 +216,7 @@
 <span class="cline-any cline-yes">27x</span>
 <span class="cline-any cline-yes">27x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">27x</span>
 <span class="cline-any cline-yes">27x</span>
 <span class="cline-any cline-yes">27x</span>
@@ -252,8 +256,6 @@
 <span class="cline-any cline-yes">27x</span>
 <span class="cline-any cline-yes">27x</span>
 <span class="cline-any cline-yes">27x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">27x</span>
 <span class="cline-any cline-yes">27x</span>
 <span class="cline-any cline-yes">27x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -276,6 +278,7 @@
 <span class="cline-any cline-yes">27x</span>
 <span class="cline-any cline-yes">27x</span>
 <span class="cline-any cline-yes">27x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">27x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -292,6 +295,7 @@
 <span class="cline-any cline-yes">27x</span>
 <span class="cline-any cline-yes">27x</span>
 <span class="cline-any cline-yes">27x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">27x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -308,6 +312,7 @@
 <span class="cline-any cline-yes">27x</span>
 <span class="cline-any cline-yes">27x</span>
 <span class="cline-any cline-yes">27x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">27x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -326,6 +331,7 @@
 <span class="cline-any cline-yes">27x</span>
 <span class="cline-any cline-yes">27x</span>
 <span class="cline-any cline-yes">27x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">27x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
@@ -345,15 +351,16 @@
 <span class="cline-any cline-yes">27x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">27x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { useFormik } from "formik";
-import * as Yup from "yup";
-import API from "../services/api";
-import { useNavigate } from "react-router-dom";
-import { Mail, Lock, User } from "lucide-react"; // ✅ เพิ่ม icon ใช้ตรง input
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { useFormik } from "formik"; 
+import * as Yup from "yup"; 
+import API from "../services/api"; 
+import { useNavigate } from "react-router-dom"; 
+import { Mail, Lock, User } from "lucide-react"; 
 &nbsp;
 export default function Register() {
-  const navigate = useNavigate();
+  const navigate = useNavigate(); 
 &nbsp;
+  // ตั้งค่า Formik เพื่อจัดการข้อมูล form สมัครสมาชิก
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -363,14 +370,14 @@ export default function Register() {
     },
     validationSchema: Yup.object({
       name: Yup.string()
-        .min(2, "Name must be at least 2 characters")
-        .required("Required"),
-      email: Yup.string().email("Invalid email").required("Required"),
+        .min(2, "Name must be at least 2 characters") // ชื่อต้องอย่างน้อย 2 ตัว
+        .required("Required"), // ห้ามเว้นว่าง
+      email: Yup.string().email("Invalid email").required("Required"), // อีเมลต้องมีรูปแบบถูกต้อง
       password: Yup.string()
-        .min(6, "Password must be at least 6 characters")
+        .min(6, "Password must be at least 6 characters") // รหัสผ่านอย่างน้อย 6 ตัว
         .required("Required"),
       confirmPassword: Yup.string()
-        .oneOf([Yup.ref("password")], "Passwords must match")
+        .oneOf([Yup.ref("password")], "Passwords must match") // ต้องตรงกับ password
         .required("Required"),
     }),
     onSubmit: async (values, { setSubmitting, setErrors }) =&gt; {
@@ -380,20 +387,18 @@ export default function Register() {
           email: values.email,
           password: values.password,
         });
-        navigate("/");
+        navigate("/"); 
       } catch {
-        setErrors({ email: "Email already exists" });
+        setErrors({ email: "Email already exists" }); // ถ้า email ซ้ำ แสดง error ที่ช่อง email
       } finally {
-        setSubmitting(false);
+        setSubmitting(false); 
       }
     },
   });
 &nbsp;
   return (
     &lt;div
-      className="h-screen w-full bg-cover bg-center flex items-center justify-center"
-      style={{ backgroundImage: `url('/your-sky-background.png')` }}
-    &gt;
+      className="h-screen w-full bg-cover bg-center flex items-center justify-center"&gt;
       &lt;form
         onSubmit={formik.handleSubmit}
         className="bg-white/60 backdrop-blur-lg p-10 rounded-3xl shadow-2xl w-full max-w-md min-h-[600px] flex flex-col justify-center space-y-6"
@@ -406,9 +411,9 @@ export default function Register() {
           Join us to access awesome features!
         &lt;/p&gt;
 &nbsp;
-        {/* Name Field */}
+        {/* ช่องกรอก Name */}
         &lt;div className="relative"&gt;
-          &lt;label htmlFor="name" className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 " /&gt;
+          &lt;label htmlFor="name" className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" /&gt;
           &lt;User className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" /&gt;
           &lt;input
             id="name"
@@ -417,12 +422,13 @@ export default function Register() {
             className="w-full pl-10 p-3 rounded-md bg-white  focus:outline-none focus:ring-2 focus:ring-blue-500"
             {...formik.getFieldProps("name")}
           /&gt;
+          {/* แสดง error ถ้ามี */}
           {formik.touched.name &amp;&amp; formik.errors.name &amp;&amp; (
             &lt;p className="text-red-500 text-xs mt-1"&gt;{formik.errors.name}&lt;/p&gt;
           )}
         &lt;/div&gt;
 &nbsp;
-        {/* Email Field */}
+        {/* ช่องกรอก Email */}
         &lt;div className="relative"&gt;
           &lt;label htmlFor="email" className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" /&gt;
           &lt;Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" /&gt;
@@ -433,12 +439,13 @@ export default function Register() {
             className="w-full pl-10 p-3 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
             {...formik.getFieldProps("email")}
           /&gt;
+          {/* แสดง error ถ้ามี */}
           {formik.touched.email &amp;&amp; formik.errors.email &amp;&amp; (
             &lt;p className="text-red-500 text-xs mt-1"&gt;{formik.errors.email}&lt;/p&gt;
           )}
         &lt;/div&gt;
 &nbsp;
-        {/* Password Field */}
+        {/* ช่องกรอกรหัสผ่าน */}
         &lt;div className="relative"&gt;
           &lt;label htmlFor="password" className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" /&gt;
           &lt;Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" /&gt;
@@ -449,6 +456,7 @@ export default function Register() {
             className="w-full pl-10 p-3 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
             {...formik.getFieldProps("password")}
           /&gt;
+          {/* แสดง error ถ้ามี */}
           {formik.touched.password &amp;&amp; formik.errors.password &amp;&amp; (
             &lt;p className="text-red-500 text-xs mt-1"&gt;
               {formik.errors.password}
@@ -456,7 +464,7 @@ export default function Register() {
           )}
         &lt;/div&gt;
 &nbsp;
-        {/* Confirm Password Field */}
+        {/* ช่องกรอกยืนยันรหัสผ่าน */}
         &lt;div className="relative"&gt;
           &lt;label htmlFor="confirmPassword" className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" /&gt;
           &lt;Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" /&gt;
@@ -467,6 +475,7 @@ export default function Register() {
             className="w-full pl-10 p-3 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
             {...formik.getFieldProps("confirmPassword")}
           /&gt;
+          {/* แสดง error ถ้ามี */}
           {formik.touched.confirmPassword &amp;&amp; formik.errors.confirmPassword &amp;&amp; (
             &lt;p className="text-red-500 text-xs mt-1"&gt;
               {formik.errors.confirmPassword}
@@ -474,7 +483,7 @@ export default function Register() {
           )}
         &lt;/div&gt;
 &nbsp;
-        {/* ปุ่มสมัคร */}
+        {/* ปุ่ม Register */}
         &lt;button
           type="submit"
           disabled={formik.isSubmitting}
@@ -493,7 +502,7 @@ export default function Register() {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-04-27T06:13:06.147Z
+                at 2025-04-27T12:33:06.533Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

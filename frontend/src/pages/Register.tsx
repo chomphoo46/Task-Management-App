@@ -1,12 +1,13 @@
-import { useFormik } from "formik";
-import * as Yup from "yup";
-import API from "../services/api";
-import { useNavigate } from "react-router-dom";
-import { Mail, Lock, User } from "lucide-react"; // ✅ เพิ่ม icon ใช้ตรง input
+import { useFormik } from "formik"; 
+import * as Yup from "yup"; 
+import API from "../services/api"; 
+import { useNavigate } from "react-router-dom"; 
+import { Mail, Lock, User } from "lucide-react"; 
 
 export default function Register() {
-  const navigate = useNavigate();
+  const navigate = useNavigate(); 
 
+  // ตั้งค่า Formik เพื่อจัดการข้อมูล form สมัครสมาชิก
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -16,14 +17,14 @@ export default function Register() {
     },
     validationSchema: Yup.object({
       name: Yup.string()
-        .min(2, "Name must be at least 2 characters")
-        .required("Required"),
-      email: Yup.string().email("Invalid email").required("Required"),
+        .min(2, "Name must be at least 2 characters") // ชื่อต้องอย่างน้อย 2 ตัว
+        .required("Required"), // ห้ามเว้นว่าง
+      email: Yup.string().email("Invalid email").required("Required"), // อีเมลต้องมีรูปแบบถูกต้อง
       password: Yup.string()
-        .min(6, "Password must be at least 6 characters")
+        .min(6, "Password must be at least 6 characters") // รหัสผ่านอย่างน้อย 6 ตัว
         .required("Required"),
       confirmPassword: Yup.string()
-        .oneOf([Yup.ref("password")], "Passwords must match")
+        .oneOf([Yup.ref("password")], "Passwords must match") // ต้องตรงกับ password
         .required("Required"),
     }),
     onSubmit: async (values, { setSubmitting, setErrors }) => {
@@ -33,20 +34,18 @@ export default function Register() {
           email: values.email,
           password: values.password,
         });
-        navigate("/");
+        navigate("/"); 
       } catch {
-        setErrors({ email: "Email already exists" });
+        setErrors({ email: "Email already exists" }); // ถ้า email ซ้ำ แสดง error ที่ช่อง email
       } finally {
-        setSubmitting(false);
+        setSubmitting(false); 
       }
     },
   });
 
   return (
     <div
-      className="h-screen w-full bg-cover bg-center flex items-center justify-center"
-      style={{ backgroundImage: `url('/your-sky-background.png')` }}
-    >
+      className="h-screen w-full bg-cover bg-center flex items-center justify-center">
       <form
         onSubmit={formik.handleSubmit}
         className="bg-white/60 backdrop-blur-lg p-10 rounded-3xl shadow-2xl w-full max-w-md min-h-[600px] flex flex-col justify-center space-y-6"
@@ -59,9 +58,9 @@ export default function Register() {
           Join us to access awesome features!
         </p>
 
-        {/* Name Field */}
+        {/* ช่องกรอก Name */}
         <div className="relative">
-          <label htmlFor="name" className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 " />
+          <label htmlFor="name" className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
           <User className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
           <input
             id="name"
@@ -70,12 +69,13 @@ export default function Register() {
             className="w-full pl-10 p-3 rounded-md bg-white  focus:outline-none focus:ring-2 focus:ring-blue-500"
             {...formik.getFieldProps("name")}
           />
+          {/* แสดง error ถ้ามี */}
           {formik.touched.name && formik.errors.name && (
             <p className="text-red-500 text-xs mt-1">{formik.errors.name}</p>
           )}
         </div>
 
-        {/* Email Field */}
+        {/* ช่องกรอก Email */}
         <div className="relative">
           <label htmlFor="email" className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
           <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
@@ -86,12 +86,13 @@ export default function Register() {
             className="w-full pl-10 p-3 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
             {...formik.getFieldProps("email")}
           />
+          {/* แสดง error ถ้ามี */}
           {formik.touched.email && formik.errors.email && (
             <p className="text-red-500 text-xs mt-1">{formik.errors.email}</p>
           )}
         </div>
 
-        {/* Password Field */}
+        {/* ช่องกรอกรหัสผ่าน */}
         <div className="relative">
           <label htmlFor="password" className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
           <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
@@ -102,6 +103,7 @@ export default function Register() {
             className="w-full pl-10 p-3 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
             {...formik.getFieldProps("password")}
           />
+          {/* แสดง error ถ้ามี */}
           {formik.touched.password && formik.errors.password && (
             <p className="text-red-500 text-xs mt-1">
               {formik.errors.password}
@@ -109,7 +111,7 @@ export default function Register() {
           )}
         </div>
 
-        {/* Confirm Password Field */}
+        {/* ช่องกรอกยืนยันรหัสผ่าน */}
         <div className="relative">
           <label htmlFor="confirmPassword" className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
           <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
@@ -120,6 +122,7 @@ export default function Register() {
             className="w-full pl-10 p-3 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
             {...formik.getFieldProps("confirmPassword")}
           />
+          {/* แสดง error ถ้ามี */}
           {formik.touched.confirmPassword && formik.errors.confirmPassword && (
             <p className="text-red-500 text-xs mt-1">
               {formik.errors.confirmPassword}
@@ -127,7 +130,7 @@ export default function Register() {
           )}
         </div>
 
-        {/* ปุ่มสมัคร */}
+        {/* ปุ่ม Register */}
         <button
           type="submit"
           disabled={formik.isSubmitting}

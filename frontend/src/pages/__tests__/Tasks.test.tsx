@@ -60,9 +60,9 @@ describe("Tasks Page", () => {
     );
 
     fireEvent.change(await screen.findByPlaceholderText(/title/i), { target: { value: "New Task" } });
-    fireEvent.submit(screen.getByRole("button", { name: /add task/i }));
+    fireEvent.submit(screen.getByRole("button", { name: /add new task/i }));
 
-    expect(await screen.findByText(/new task/i)).toBeInTheDocument();
+    expect(await screen.findByText(/add new task/i)).toBeInTheDocument();
   });
 
   it("edits a task", async () => {
@@ -167,7 +167,7 @@ describe("Tasks Page", () => {
     );
 
     fireEvent.change(await screen.findByPlaceholderText(/title/i), { target: { value: "Error Task" } });
-    fireEvent.submit(screen.getByRole("button", { name: /add task/i }));
+    fireEvent.submit(screen.getByRole("button", { name: /Add New Task/i }));
 
     await waitFor(() => {
       expect(screen.queryByText(/error task/i)).not.toBeInTheDocument();

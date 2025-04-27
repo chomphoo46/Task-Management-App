@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>87/87</span>
+                <span class='fraction'>93/93</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>87/87</span>
+                <span class='fraction'>93/93</span>
             </div>
         
             
@@ -178,7 +178,19 @@
 <a name='L113'></a><a href='#L113'>113</a>
 <a name='L114'></a><a href='#L114'>114</a>
 <a name='L115'></a><a href='#L115'>115</a>
-<a name='L116'></a><a href='#L116'>116</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L116'></a><a href='#L116'>116</a>
+<a name='L117'></a><a href='#L117'>117</a>
+<a name='L118'></a><a href='#L118'>118</a>
+<a name='L119'></a><a href='#L119'>119</a>
+<a name='L120'></a><a href='#L120'>120</a>
+<a name='L121'></a><a href='#L121'>121</a>
+<a name='L122'></a><a href='#L122'>122</a>
+<a name='L123'></a><a href='#L123'>123</a>
+<a name='L124'></a><a href='#L124'>124</a>
+<a name='L125'></a><a href='#L125'>125</a>
+<a name='L126'></a><a href='#L126'>126</a>
+<a name='L127'></a><a href='#L127'>127</a>
+<a name='L128'></a><a href='#L128'>128</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -196,6 +208,7 @@
 <span class="cline-any cline-yes">22x</span>
 <span class="cline-any cline-yes">22x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">22x</span>
 <span class="cline-any cline-yes">22x</span>
 <span class="cline-any cline-yes">22x</span>
@@ -211,6 +224,7 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -252,6 +266,10 @@
 <span class="cline-any cline-yes">22x</span>
 <span class="cline-any cline-yes">22x</span>
 <span class="cline-any cline-yes">22x</span>
+<span class="cline-any cline-yes">22x</span>
+<span class="cline-any cline-yes">22x</span>
+<span class="cline-any cline-yes">22x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">22x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -269,6 +287,10 @@
 <span class="cline-any cline-yes">22x</span>
 <span class="cline-any cline-yes">22x</span>
 <span class="cline-any cline-yes">22x</span>
+<span class="cline-any cline-yes">22x</span>
+<span class="cline-any cline-yes">22x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
@@ -283,6 +305,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">22x</span>
 <span class="cline-any cline-yes">22x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">22x</span>
 <span class="cline-any cline-yes">22x</span>
 <span class="cline-any cline-yes">22x</span>
@@ -293,12 +317,12 @@
 <span class="cline-any cline-yes">22x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">22x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { useFormik } from "formik";
-import * as Yup from "yup";
-import API from "../services/api";
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { useFormik } from "formik"; // ใช้จัดการฟอร์ม
+import * as Yup from "yup"; // ใช้ validate ฟอร์ม
+import API from "../services/api"; 
 import { useNavigate, Link } from "react-router-dom";
-import { jwtDecode } from "jwt-decode";
-import { Mail, Lock } from "lucide-react";
+import { jwtDecode } from "jwt-decode"; // ใช้สำหรับ decode JWT token หลัง login สำเร็จ
+import { Mail, Lock } from "lucide-react"; 
 &nbsp;
 interface DecodedToken {
   sub: string;
@@ -311,14 +335,15 @@ interface DecodedToken {
 export default function Login() {
   const navigate = useNavigate();
 &nbsp;
+  // ใช้ useFormik เพื่อจัดการฟอร์มอย่างง่ายและปลอดภัย พร้อม validate
   const formik = useFormik({
     initialValues: {
       email: "",
       password: "",
     },
     validationSchema: Yup.object({
-      email: Yup.string().email("Invalid email").required("Required"),
-      password: Yup.string().min(6, "Min 6 chars").required("Required"),
+      email: Yup.string().email("Invalid email").required("Required"), // ตรวจรูปแบบ email
+      password: Yup.string().min(6, "Min 6 chars").required("Required"), // password ต้องมีอย่างน้อย 6 ตัว
     }),
     onSubmit: async (values, { setSubmitting, setErrors }) =&gt; {
       try {
@@ -326,10 +351,11 @@ export default function Login() {
         const token = res.data.token;
         const decoded = jwtDecode&lt;DecodedToken&gt;(token);
 &nbsp;
+        // เก็บ token และข้อมูล user ลง localStorage
         localStorage.setItem("token", token);
         localStorage.setItem(
           "user",
-          JSON.stringify({ name: decoded.<span class="branch-0 cbranch-no" title="branch not covered" >name || "Guest" }</span>)
+          JSON.stringify({ name: decoded.<span class="branch-0 cbranch-no" title="branch not covered" >name || "Guest" }</span>) // กันกรณี name หาย
         );
         console.log(decoded);
 &nbsp;
@@ -348,7 +374,7 @@ export default function Login() {
         onSubmit={formik.handleSubmit}
         className="bg-white/60 backdrop-blur-lg p-10 rounded-3xl shadow-2xl w-full max-w-md min-h-[550px] flex flex-col justify-center space-y-6"
       &gt;
-        {/* หัวข้อ */}
+        {/* login */}
         &lt;h1 className="text-4xl font-bold text-center text-gray-800"&gt;
           Sign in
         &lt;/h1&gt;
@@ -356,23 +382,27 @@ export default function Login() {
           Welcome To TaskManagement
         &lt;/p&gt;
 &nbsp;
-        {/* Email Field */}
+        {/* Email */}
         &lt;div className="relative"&gt;
           &lt;input
             id="email"
             type="email"
             placeholder="Email"
             className="w-full pl-10 p-3 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-            {...formik.getFieldProps("email")}
+            {...formik.getFieldProps("email")} // เชื่อม formik กับ input
           /&gt;
-          &lt;label htmlFor="email" className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" /&gt;
+          &lt;label
+            htmlFor="email"
+            className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400"
+          /&gt;
           &lt;Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" /&gt;
+          {/*แสดง error ถ้ามี */}
           {formik.touched.email &amp;&amp; formik.errors.email &amp;&amp; (
             &lt;p className="text-red-500 text-xs mt-1"&gt;{formik.errors.email}&lt;/p&gt;
           )}
         &lt;/div&gt;
 &nbsp;
-        {/* Password Field */}
+        {/* Password */}
         &lt;div className="relative"&gt;
           &lt;input
             id="password"
@@ -381,8 +411,12 @@ export default function Login() {
             className="w-full pl-10 p-3 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
             {...formik.getFieldProps("password")}
           /&gt;
-          &lt;label htmlFor="password" className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" /&gt;
-          &lt;Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" /&gt;  
+          &lt;label
+            htmlFor="password"
+            className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400"
+          /&gt;
+          &lt;Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" /&gt;
+&nbsp;
           {formik.touched.password &amp;&amp; formik.errors.password &amp;&amp; (
             &lt;p className="text-red-500 text-xs mt-1"&gt;
               {formik.errors.password}
@@ -393,11 +427,13 @@ export default function Login() {
         {/* ปุ่ม Login */}
         &lt;button
           type="submit"
-          disabled={formik.isSubmitting}
+          disabled={formik.isSubmitting} // กันกดรัวๆตอนกำลังส่ง form
           className="w-full bg-blue-600 text-white p-3 rounded-lg hover:bg-blue-800 font-semibold text-xl"
         &gt;
-          {formik.isSubmitting ? "Signing in..." : "Sign in"}
+          {formik.isSubmitting ? "Signing in..." : "Sign in"}{" "}
         &lt;/button&gt;
+&nbsp;
+        {/* ลิงก์ไป Register */}
         &lt;div className="text-center text-sm text-gray-500 mt-4"&gt;
           Don't have an account?{" "}
           &lt;Link to="/register" className="text-blue-600 hover:underline"&gt;
@@ -415,7 +451,7 @@ export default function Login() {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-04-27T06:13:06.147Z
+                at 2025-04-27T12:33:06.533Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
