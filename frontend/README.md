@@ -35,3 +35,18 @@ npm install
 ```
 npm run dev
 ```
+## 👨‍💻 ผู้พัฒนา
+
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/chomphoo46">
+        <img src="https://avatars.githubusercontent.com/u/140147946?v=4" width="100px;" alt="chomphoo46"/>
+        <br />
+        <sub><b>Chomphoo Inchan</b></sub>
+      </a>
+      <br />
+      <a title="Frontend Developer" href="https://github.com/chomphoo46">🎨</a>
+    </td>
+  </tr>
+</table>
