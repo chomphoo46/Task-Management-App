@@ -48,7 +48,7 @@ cd taskmanagement-app/backend
    - Before starting the container, ensure you set the database POSTGRES_USER and POSTGRES_PASSWORD in the [docker-compose.yml](./docker-compose.yml) file.
    - Then, run:
    ```bash
-   docker compose up -build
+   docker compose up --build
    ```
    - จะทำการเปิด:
      - เซิร์ฟเวอร์ Backend (NestJS)
