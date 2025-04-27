@@ -22,19 +22,23 @@ Backend ของระบบ Task Management เขียนด้วย [Nest.
 ### 🔧 1. Clone & Install
 
 ```bash
-cd taskmanagement--app/backend
+cd taskmanagement-app/backend
 npm install
-
-🐘 2. Run PostgreSQL with Docker
+```
+### 🐘 2. Run PostgreSQL with Docker
+```
 docker compose up -d
-
-🔒 3. สร้าง .env ไฟล์
+```
+### 🔒 3. สร้าง .env ไฟล์
+```
 DATABASE_HOST=db
 DATABASE_PORT=5432
 DATABASE_USER=postgres
 DATABASE_PASSWORD=postgres
 DATABASE_NAME=task_management
-JWT_SECRET=supersecretkey
 
-🧑‍💻 4. Run Backend Server
+```
+### 🧑‍💻 4. Run Backend Server
+```
 npm run start:dev
+```
