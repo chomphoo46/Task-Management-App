@@ -11,7 +11,7 @@ vi.mock("react-hot-toast", () => ({
     success: vi.fn(),
     error: vi.fn(),
   },
-  Toaster: () => <div data-testid="toaster" />, // ✅ Mock Toaster เป็น div เปล่า
+  Toaster: () => <div data-testid="toaster" />, // Mock Toaster เป็น div เปล่า
 }));
 
 // Mock API

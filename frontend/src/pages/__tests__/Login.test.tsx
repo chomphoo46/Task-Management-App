@@ -3,7 +3,7 @@ import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { BrowserRouter, useNavigate } from "react-router-dom";
 import '@testing-library/jest-dom';
 
-// 🛠 Mock useNavigate ก่อน import Login
+// Mock useNavigate ก่อน import Login
 vi.mock("react-router-dom", async () => {
   const actual = await vi.importActual<typeof import("react-router-dom")>("react-router-dom");
   return {
@@ -12,7 +12,7 @@ vi.mock("react-router-dom", async () => {
   };
 });
 
-// 🛠 Mock jwtDecode ก่อน import Login
+// Mock jwtDecode ก่อน import Login
 vi.mock("jwt-decode", () => ({
   jwtDecode: vi.fn(() => ({
     sub: "userId",
@@ -23,10 +23,10 @@ vi.mock("jwt-decode", () => ({
   })),
 }));
 
-import Login from "../Login"; // 👈 import หลัง mock
+import Login from "../Login"; // import หลัง mock
 import API from "../../services/api";
 
-// 🛠 Mock API
+// Mock API
 vi.mock("../../services/api", () => ({
   default: {
     post: vi.fn(),
@@ -102,7 +102,7 @@ describe("Login Component", () => {
       expect(navigate).toHaveBeenCalledWith("/dashboard");
     });
 
-    // ✅ Bonus: ตรวจว่า localStorage ได้เก็บ token ด้วย
+    // ตรวจว่า localStorage ได้เก็บ token ด้วย
     expect(localStorage.getItem("token")).toBe("mocked.jwt.token");
     expect(JSON.parse(localStorage.getItem("user")!)).toEqual({ name: "Test User" });
   });
