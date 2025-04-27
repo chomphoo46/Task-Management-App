@@ -1,4 +1,4 @@
-# 📋 ระบบจัดการงาน (Task Management App)
+# 📋 ระบบจัดการงาน (Task Management System)
 
 โปรเจกต์นี้เป็นระบบบริหารจัดการงาน (Task Management) แบ่งออกเป็น 2 ส่วน คือ
 
@@ -29,5 +29,31 @@
 
 ---
 
-## 
+## ⚙️ Setup and Installation
 
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/chomphoo46/Task-Management-App.git
+   cd Task-Management-App
+   ```
+
+2. Set Up the Backend: For detailed instructions on setting up the backend, refer to the [Backend README](./Backend/README.md#️-setup-and-installation).
+
+3. Set Up the Frontend: For detailed instructions on setting up the frontend, refer to the [Frontend README](./Frontend/README.md#-setup-and-installation).
+
+## 👨‍💻 ผู้พัฒนา
+
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/chomphoo46">
+        <img src="https://avatars.githubusercontent.com/u/140147946?v=4" width="100px;" alt="chomphoo46"/>
+        <br />
+        <sub><b>Chomphoo Inchan</b></sub>
+      </a>
+      <br />
+      <a title="Frontend Developer" href="https://github.com/chomphoo46">🎨</a>
+    </td>
+  </tr>
+</table>
