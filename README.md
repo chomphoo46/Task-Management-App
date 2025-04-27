@@ -1,4 +1,4 @@
-# 📋 ระบบจัดการงาน (Task Management System)
+# 📋 ระบบจัดการงาน (Task Management App)
 
 โปรเจกต์นี้เป็นระบบบริหารจัดการงาน (Task Management) แบ่งออกเป็น 2 ส่วน คือ
 
