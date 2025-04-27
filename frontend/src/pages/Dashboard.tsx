@@ -92,7 +92,6 @@ export default function Dashboard() {
               <div key={status}>
                 <h3 className="text-xl font-semibold mb-2 capitalize">
                   {status.replace("inProgress", "In Progress")}{" "}
-                  {/* แก้ชื่อให้สวย */}
                 </h3>
                 <div className="grid md:grid-cols-2 gap-4">
                   {list.map((task) => (

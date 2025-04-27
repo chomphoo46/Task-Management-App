@@ -1,5 +1,3 @@
-# frontend/Dockerfile
-
 # ใช้ Node.js เวอร์ชันล่าสุด
 FROM node:20
 
