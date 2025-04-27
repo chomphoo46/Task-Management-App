@@ -14,7 +14,7 @@ services:
       - db_data:/var/lib/postgresql/data
 
   backend:
-    build: .
+    build: ./backend
     restart: always
     ports:
       - "3000:3000"
@@ -26,7 +26,15 @@ services:
       DATABASE_NAME: task_management
     depends_on:
       - db
-    command: npm run start:dev 
+    command: npm run start:dev
+
+  frontend:
+    build: ./frontend
+    restart: always
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
 
 volumes:
   db_data:
